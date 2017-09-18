@@ -13,15 +13,17 @@ import com.risk.calc.model.RiskInfo;
 import com.risk.calc.repository.RiskCalcRepository;
 
 @RestController
+@RequestMapping("/riskcalc")
 public class RiskCalcController {
 
 	@Autowired
 	private RiskCalcRepository riskCalcRepository;
 	
-	@RequestMapping(value = "/api/riskcalc", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<RiskInfo> add(@RequestBody RiskInfo riskinfo) {
+	@RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<RiskInfo> save(@RequestBody RiskInfo riskinfo) {
 		riskCalcRepository.save(riskinfo);
 
 		return new ResponseEntity<RiskInfo>(riskinfo, HttpStatus.CREATED);
 	}
+	
 }
